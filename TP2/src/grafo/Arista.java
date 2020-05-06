@@ -24,19 +24,19 @@ public class Arista implements Comparator<Arista> {
 		return (int)(e1.peso - e2.peso); // Arbol de expansion minima
 	}
 
-	public int getOrigen() {
+	public int getExtremo1() {
 		return extremo1;
 	}
 
-	public void setOrigen(int origen) {
+	public void setExtremo1(int origen) {
 		this.extremo1 = origen;
 	}
 
-	public int getDestino() {
+	public int getExtremo2() {
 		return extremo2;
 	}
 
-	public void setDestino(int destino) {
+	public void setExtremo2(int destino) {
 		this.extremo2 = destino;
 	}
 

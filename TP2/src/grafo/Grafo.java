@@ -39,7 +39,7 @@ public class Grafo {
 
 		for (int i = 0; i < pos; i++) {
 			if (grafo[i] != null) {
-				if ((grafo[i].getOrigen() == origen && grafo[i].getDestino() == destino)) {
+				if ((grafo[i].getExtremo1() == origen && grafo[i].getExtremo2() == destino)) {
 					this.peso -= grafo[i].getPeso();
 					grafo[i] = null;
 					cantidadAristas--;
@@ -54,8 +54,8 @@ public class Grafo {
 		boolean bool = false;
 		for (int i = 0; i < pos; i++) {
 			if (grafo[i] != null) {
-				if ((grafo[i].getOrigen() == origen && grafo[i].getDestino() == destino)
-						|| ((grafo[i].getOrigen() == destino && grafo[i].getDestino() == origen))) {
+				if ((grafo[i].getExtremo1() == origen && grafo[i].getExtremo2() == destino)
+						|| ((grafo[i].getExtremo1() == destino && grafo[i].getExtremo2() == origen))) {
 					bool = true;
 				}
 			}
@@ -68,11 +68,11 @@ public class Grafo {
 		verificarVertice(origen, origen);
 		Set<Integer> ret = new HashSet<Integer>();
 		for (int i = 0; i < pos; i++) {
-			if (grafo[i] != null && grafo[i].getOrigen() == origen) {
-				ret.add(grafo[i].getDestino());
+			if (grafo[i] != null && grafo[i].getExtremo1() == origen) {
+				ret.add(grafo[i].getExtremo2());
 			}
-			if (grafo[i] != null && grafo[i].getDestino() == origen) {
-				ret.add(grafo[i].getOrigen());
+			if (grafo[i] != null && grafo[i].getExtremo2() == origen) {
+				ret.add(grafo[i].getExtremo1());
 			}
 		}
 		return ret;
@@ -83,8 +83,8 @@ public class Grafo {
 		double peso = 0;
 
 		for (int i = 0; i < pos; i++) {
-			if (grafo[i] != null && (grafo[i].getOrigen() == origen && grafo[i].getDestino() == destino)
-					|| (grafo[i].getOrigen() == destino && grafo[i].getDestino() == origen)) {
+			if (grafo[i] != null && (grafo[i].getExtremo1() == origen && grafo[i].getExtremo2() == destino)
+					|| (grafo[i].getExtremo1() == destino && grafo[i].getExtremo2() == origen)) {
 				peso = grafo[i].getPeso();
 			}
 		}
@@ -103,7 +103,7 @@ public class Grafo {
 		String s = "";
 		for (int i = 0; i < pos; i++) {
 			if (grafo[i] != null)
-				s += grafo[i].getOrigen() + " = {" + grafo[i].getDestino() + "(" + grafo[i].getPeso() + ")} ";
+				s += grafo[i].getExtremo1() + " = {" + grafo[i].getExtremo2() + "(" + grafo[i].getPeso() + ")} ";
 		}
 		s += ".";
 		return s;
