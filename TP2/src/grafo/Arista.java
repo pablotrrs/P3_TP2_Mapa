@@ -3,8 +3,8 @@ package grafo;
 import java.util.Comparator;
 
 public class Arista implements Comparator<Arista> {
-	private int origen; // Vertice origen
-	private int destino; // Vertice destino
+	private int extremo1; // Vertice origen
+	private int extremo2; // Vertice destino
 	private double peso; // Peso entre el vertice origen y destino
 
 	public Arista() {
@@ -12,8 +12,8 @@ public class Arista implements Comparator<Arista> {
 	}
 
 	public Arista(int origen, int destino, double peso2) {
-		this.origen = origen;
-		this.destino = destino;
+		this.extremo1 = origen;
+		this.extremo2 = destino;
 		this.peso = peso2;
 	}
 
@@ -25,19 +25,19 @@ public class Arista implements Comparator<Arista> {
 	}
 
 	public int getOrigen() {
-		return origen;
+		return extremo1;
 	}
 
 	public void setOrigen(int origen) {
-		this.origen = origen;
+		this.extremo1 = origen;
 	}
 
 	public int getDestino() {
-		return destino;
+		return extremo2;
 	}
 
 	public void setDestino(int destino) {
-		this.destino = destino;
+		this.extremo2 = destino;
 	}
 
 	public double getPeso() {
