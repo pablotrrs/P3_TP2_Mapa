@@ -89,18 +89,4 @@ public class Negocio {
 		}
 		return poligonos;
 	}
-
-	// Conecta a todos los puntos y forma un poligono completo
-	public static MapPolygonImpl conectarCompleto(ArrayList<Tupla<String, Coordinate>> localidades) {
-		ArrayList<Coordinate> poligonoCompleto = new ArrayList<Coordinate>();
-		for (Tupla<String, Coordinate> coordenada1 : localidades) {
-			poligonoCompleto.add(coordenada1.getSegundoElemento());
-			for (Tupla<String, Coordinate> coordenada2 : localidades) {
-				if (!coordenada1.equals(coordenada2)) {
-					poligonoCompleto.add(coordenada2.getSegundoElemento());
-				}
-			}
-		}
-		return new MapPolygonImpl(poligonoCompleto);
-	}
 }

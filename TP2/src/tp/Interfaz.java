@@ -27,11 +27,6 @@ import javax.swing.JProgressBar;
 import java.awt.Font;
 
 public class Interfaz {
-	/*
-	 * * * Avisar que Limite de puntos = 23 y que no se ingresen letras tildadas. No
-	 * se puede usar BIGDECIMAL por la raiz cuadrada y el seno de formula Haversine
-	 * (AVISAR PROFES). * * *.
-	 */
 
 	private Integer xx = 0, yy = 0;
 

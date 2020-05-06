@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
@@ -56,7 +57,7 @@ public class SW extends SwingWorker<Boolean, Boolean> {
 			if (get()) {
 				mensajeSW.setBounds(870, 400, 500, 200);
 				mensajeSW.setText("marcado con exito");
-				almacenarPuntoYDibujar(coordenada);
+				almacenarPuntoYDibujar();
 			} else {
 				mensajeSW.setText("no marcado");
 			}
@@ -86,19 +87,32 @@ public class SW extends SwingWorker<Boolean, Boolean> {
 		tick.start();
 	}
 
-	private void almacenarPuntoYDibujar(Coordinate coordenada) {
+	private void almacenarPuntoYDibujar() {
 		Interfaz.puntosMarcados.add(new Tupla<String, Coordinate>(provincia, coordenada));
-		marcarPuntoEnMapaYConectarCompleto(coordenada);
-		Interfaz.marcadores.add(new MapMarkerDot(nombreMarca, coordenada));
-	}
-
-	private void marcarPuntoEnMapaYConectarCompleto(Coordinate coordenada) {
+		
 		MapMarkerDot marca = new MapMarkerDot(nombreMarca, coordenada);
 		cambiarColorMarcador(marca);
 		mapa.addMapMarker(marca);
-		MapPolygonImpl poligono = Negocio.conectarCompleto(Interfaz.puntosMarcados);
+		
+		MapPolygonImpl poligono = conectarCompleto(Interfaz.puntosMarcados);
 		cambiarColorPoligono(poligono);
 		mapa.addMapPolygon(poligono);
+		
+		Interfaz.marcadores.add(marca);
+	}
+
+		// Conecta a todos los puntos y forma un poligono completo
+	public MapPolygonImpl conectarCompleto(ArrayList<Tupla<String, Coordinate>> localidades) {
+		ArrayList<Coordinate> poligonoCompleto = new ArrayList<Coordinate>();
+		for (Tupla<String, Coordinate> coordenada1 : localidades) {
+			poligonoCompleto.add(coordenada1.getSegundoElemento());
+			for (Tupla<String, Coordinate> coordenada2 : localidades) {
+				if (!coordenada1.equals(coordenada2)) {
+					poligonoCompleto.add(coordenada2.getSegundoElemento());
+				}
+			}
+		}
+		return new MapPolygonImpl(poligonoCompleto);
 	}
 
 	private void cambiarColorMarcador(MapMarkerDot marca) {

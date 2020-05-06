@@ -28,16 +28,6 @@ public class NegocioTest {
 	}
 
 	@Test
-	public void testConectarCompleto() {
-		ArrayList<Tupla<String, Coordinate>> localidades = crearLista();
-
-		MapPolygonImpl esperado = poligonoEsperado();
-		MapPolygonImpl obtenido = Negocio.conectarCompleto(localidades);
-
-		Assert.poligonosIguales(obtenido, esperado);
-	}
-
-	@Test
 	public void testGenerarAGM() {
 		ArrayList<Tupla<String, Coordinate>> localidades = crearLista();
 		
@@ -53,23 +43,6 @@ public class NegocioTest {
 			Assert.poligonosIguales(obtenido.get(i), esperado.get(i));
 		}
 		return ret;
-	}
-
-	private MapPolygonImpl poligonoEsperado() {
-		ArrayList<Coordinate> coordenadas = new ArrayList<Coordinate>();
-		coordenadas.add(new Coordinate(-34.6131516, -58.3772316));
-		coordenadas.add(new Coordinate(-32.8908386, -68.8271713));
-		coordenadas.add(new Coordinate(-24.1945705, -65.2971191));
-
-		coordenadas.add(new Coordinate(-32.8908386, -68.8271713));
-		coordenadas.add(new Coordinate(-34.6131516, -58.3772316));
-		coordenadas.add(new Coordinate(-24.1945705, -65.2971191));
-
-		coordenadas.add(new Coordinate(-24.1945705, -65.2971191));
-		coordenadas.add(new Coordinate(-34.6131516, -58.3772316));
-		coordenadas.add(new Coordinate(-32.8908386, -68.8271713));
-
-		return new MapPolygonImpl(coordenadas);
 	}
 
 	private ArrayList<MapPolygonImpl> crearEsperado() {
