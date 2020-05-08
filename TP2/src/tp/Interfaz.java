@@ -303,7 +303,7 @@ public class Interfaz {
 
 	private boolean inputDeUsuarioEsValido() {
 		return !txfNombre.getText().equals("") && !txfProvincia.getText().equals("") && !txfLatitud.getText().equals("")
-				&& !txfLongitud.getText().equals("") && esNumerico(txfLatitud) && esNumerico(txfLongitud)
+				&& !txfLongitud.getText().equals("") && coordenadaEsValida()
 				&& !Tupla.contiene(puntosMarcados,
 						new Tupla<String, Coordinate>(txfProvincia.getText(), new Coordinate(
 								Double.valueOf(txfLatitud.getText()), Double.valueOf(txfLongitud.getText()))))
@@ -558,9 +558,10 @@ public class Interfaz {
 
 	// Restringimos a que los inputs en latitud y longitud sean solamente numeros
 
-	private boolean esNumerico(JTextField txf) {
+	private boolean coordenadaEsValida() {
 		try {
-			Double.parseDouble(txf.getText());
+			Double.parseDouble(txfLatitud.getText());
+			Double.parseDouble(txfLongitud.getText());
 			return true;
 		} catch (NumberFormatException e) {
 			return false;
